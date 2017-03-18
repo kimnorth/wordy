@@ -19,9 +19,12 @@ public class WordList {
         return this.words.size();
     }
 
-    public void addWord(String word, String definition){
-        Word newWord = new Word(word, definition);
+    public void addWord(Word newWord){
         words.add(newWord);
+    }
+
+    public void deleteWord(Word wordToDelete){
+        words.remove(wordToDelete);
     }
 
 

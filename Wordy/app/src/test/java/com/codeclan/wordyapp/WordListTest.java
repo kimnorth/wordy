@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class WordListTest {
 
     WordList wordList;
+    Word newWord;
 
     @Before
     public void before(){
@@ -26,8 +27,18 @@ public class WordListTest {
 
     @Test
     public void canAddWord(){
-        wordList.addWord("Banana", "a yellow kind of beef");
+        newWord = new Word("Banana", "a yellow kind of beef");
+        wordList.addWord(newWord);
         assertEquals(1, wordList.getLength());
+    }
+
+    @Test
+    public void canDeleteWord(){
+        wordList = new WordList();
+        newWord = new Word("Banana", "a yellow kind of beef");
+        wordList.addWord(newWord);
+        wordList.deleteWord(newWord);
+        assertEquals(0, wordList.getLength());
     }
 
 
