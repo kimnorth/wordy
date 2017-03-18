@@ -27,6 +27,10 @@ public class WordList {
         words.remove(wordToDelete);
     }
 
+    public ArrayList<Word> getWords(){
+        return this.words;
+    }
+
 
 
 }
