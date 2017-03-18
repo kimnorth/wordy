@@ -20,6 +20,8 @@ public class MemoryGameTest {
     Word word3;
     Word word4;
     Word word5;
+    Word word6;
+    Word word7;
 
     @Before
     public void before(){
@@ -29,12 +31,16 @@ public class MemoryGameTest {
         word2 = new Word("Fire", "a yellow thing");
         word3 = new Word("Hat", "a thing on your head");
         word4 = new Word("Seat", "for your arse");
-        word5 = new Word("Bellows", "no idea");
+        word5 = new Word("Sore", "haha");
+        word6 = new Word("Gumption", "nope");
+        word7 = new Word("Transubstantiation", "something about bread");
         wordsList.addWord(word1);
         wordsList.addWord(word2);
         wordsList.addWord(word3);
         wordsList.addWord(word4);
         wordsList.addWord(word5);
+        wordsList.addWord(word6);
+        wordsList.addWord(word7);
 
     }
 

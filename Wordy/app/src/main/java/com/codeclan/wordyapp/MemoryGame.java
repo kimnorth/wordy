@@ -1,6 +1,7 @@
 package com.codeclan.wordyapp;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by user on 18/03/2017.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 
 public class MemoryGame {
 
-    private ArrayList<Word> chosenWords;
+    ArrayList<Word> chosenWords;
 
     public MemoryGame(){
         this.chosenWords = new ArrayList<Word>();
@@ -22,19 +23,32 @@ public class MemoryGame {
 
         ArrayList<Word> allWords = wordList.getWords();
 
+        System.out.println(wordList.getLength());
+        System.out.println(allWords.size());
+
         int counter = 0;
 
-        for (Word word : allWords){
-            // if the counter isn't 5...
-            if (counter != 5){
+        while (counter < 5) {
 
-                // and If the word isn't already in our chosen words arraylist - add it
-                if (!chosenWords.contains(word)){
-                    this.chosenWords.add(word);
+                Random rand = new Random();
+                int index = rand.nextInt(allWords.size()) + 1;
+
+
+                if (!chosenWords.contains(allWords.get(index - 1))) {
+                    chosenWords.add(allWords.get(index - 1));
+//                    System.out.println(allWords.get(index - 1));
+                    allWords.remove(index - 1);
+//                    System.out.println(chosenWords.size());
+//                    System.out.println(allWords.size());
                     counter++;
                 }
-            }
+
         }
+
+        // Something to be wary of for future development - it looks like this code might be producing
+        // the same five objects every time. If you encounter problems
+        // with the same five words being selected, the above code is the culprit!
+
     }
 
 }
