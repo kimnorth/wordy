@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class WordTest {
 
     Word word;
 
@@ -32,6 +32,7 @@ public class ExampleUnitTest {
     @Test
     public void canChangeWord(){
         word = new Word("Banana", "a yellow kind of beef");
-        assertEquals("banana", word.setWord("banana");
+        word.setWord("banana");
+        assertEquals( "banana", word.getWord() );
     }
 }
