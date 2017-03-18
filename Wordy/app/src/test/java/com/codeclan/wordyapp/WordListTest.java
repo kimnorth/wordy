@@ -41,6 +41,15 @@ public class WordListTest {
         assertEquals(0, wordList.getLength());
     }
 
+//    @Test
+//    public void canEditWordInList(){
+//        wordList = new WordList();
+//        newWord = new Word("Banana", "a yellow kind of beef");
+//        wordList.addWord(newWord);
+//        // Need to create a method to edit word in the word class and test it.
+//        assertEquals();
+//    }
+
 
 
 }

@@ -35,4 +35,11 @@ public class WordTest {
         word.setWord("banana");
         assertEquals( "banana", word.getWord() );
     }
+
+    @Test
+    public void canChangeDefinition(){
+        word = new Word("Banana", "a yellow kind of beef");
+        word.setDefintion("a kind of yellow beef");
+        assertEquals("a kind of yellow beef", word.getDefintion());
+    }
 }
