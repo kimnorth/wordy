@@ -1,6 +1,5 @@
 package com.codeclan.wordyapp;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +29,5 @@ public class WordList {
     public ArrayList<Word> getWords(){
         return this.words;
     }
-
-
 
 }
