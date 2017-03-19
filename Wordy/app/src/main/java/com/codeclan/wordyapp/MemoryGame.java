@@ -33,7 +33,6 @@ public class MemoryGame {
                 Random rand = new Random();
                 int index = rand.nextInt(allWords.size()) + 1;
 
-
                 if (!chosenWords.contains(allWords.get(index - 1))) {
                     chosenWords.add(allWords.get(index - 1));
 //                    System.out.println(allWords.get(index - 1));
