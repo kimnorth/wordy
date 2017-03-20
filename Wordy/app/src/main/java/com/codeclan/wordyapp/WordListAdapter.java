@@ -30,9 +30,11 @@ public class WordListAdapter extends ArrayAdapter<Word> {
 
         TextView name = (TextView) listItemView.findViewById(R.id.name);
         name.setText(currentWord.getWord().toString());
+        name.setTag(currentWord);
 
         TextView definition = (TextView) listItemView.findViewById(R.id.definition);
         definition.setText(currentWord.getDefintion().toString());
+//        definition.setTag(currentWord);
 
         return listItemView;
 

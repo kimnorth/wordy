@@ -46,9 +46,14 @@ public class NewWordActivity extends AppCompatActivity {
         String newDefinition = fieldNewDefinition.getText().toString();
 
         SharedPreferences sharedPref = getSharedPreferences(WORDLIST, Context.MODE_PRIVATE);
-        String myWordList = sharedPref.getString("WordList", new WordList().toString());
+        String myWordList = sharedPref.getString("WordList", "This is a string");
 
         Gson gson = new Gson();
+
+        if (myWordList.equals("This is a string")){
+            myWordList = gson.toJson(new WordList());
+        }
+
         TypeToken<WordList> wordListObject = new TypeToken<WordList>(){};
         WordList wordList = gson.fromJson(myWordList, wordListObject.getType());
 
@@ -65,12 +70,4 @@ public class NewWordActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
 }
-
-
-//        intent.putExtra("new_word", newWord);
-//        intent.putExtra("new_definition", newDefinition);

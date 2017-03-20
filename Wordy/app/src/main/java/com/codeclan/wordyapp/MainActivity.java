@@ -9,9 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,25 +37,24 @@ public class MainActivity extends AppCompatActivity {
         // Get any info from sharedpreferences file
 
         SharedPreferences sharedPref = getSharedPreferences(WORDLIST, Context.MODE_PRIVATE);
-        String myWordList = sharedPref.getString( "WordList", new WordList().toString() );
+        String myWordList = sharedPref.getString( "WordList", "This is a string" );
 
         Gson gson = new Gson();
         TypeToken<WordList> newWordList = new TypeToken<WordList>(){};
-
+        if (myWordList.equals("This is a string")){
+            myWordList = gson.toJson( new WordList() );
+        }
         WordList wordList = gson.fromJson(myWordList, newWordList.getType());
 
-        // New WordList object - with 1 added word for test
-
-//        Display on this page
+//      Display on this page
 
         ArrayList<Word> mainListWords = wordList.getWords();
-        Collections.reverse(mainListWords);
+        Collections.reverse(mainListWords); // Put latest word at top
 
         WordListAdapter wordListAdapter = new WordListAdapter(this, mainListWords);
 
         ListView listView = (ListView) findViewById(R.id.main_list);
         listView.setAdapter(wordListAdapter);
-
 
     }
 
@@ -68,4 +70,23 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewWordActivity.class);
         startActivity(intent);
     }
+
+    public void onWordClicked(View textView) {
+
+        Log.d(getClass().toString(), "Word was clicked");
+
+        Word w = (Word) textView.getTag();
+
+        Log.d(getClass().toString(), w.getWord());
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("word", w);
+
+        Intent intent = new Intent(this, EditWordActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+
+    }
+
 }

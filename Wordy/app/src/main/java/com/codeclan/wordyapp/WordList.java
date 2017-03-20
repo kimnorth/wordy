@@ -1,5 +1,6 @@
 package com.codeclan.wordyapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**

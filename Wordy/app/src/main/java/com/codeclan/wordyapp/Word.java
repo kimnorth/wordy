@@ -1,10 +1,12 @@
 package com.codeclan.wordyapp;
 
+import java.io.Serializable;
+
 /**
  * Created by user on 18/03/2017.
  */
 
-public class Word {
+public class Word implements Serializable {
 
     private String word;
     private String defintion;
