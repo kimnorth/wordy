@@ -1,6 +1,8 @@
 package com.codeclan.wordyapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 public class NewWordActivity extends AppCompatActivity {
+
+    public static final String WORDLIST = "WordList";
 
     TextView enterNewWord;
     TextView enterNewDefinition;
@@ -36,9 +45,32 @@ public class NewWordActivity extends AppCompatActivity {
         String newWord = fieldNewWord.getText().toString();
         String newDefinition = fieldNewDefinition.getText().toString();
 
+        SharedPreferences sharedPref = getSharedPreferences(WORDLIST, Context.MODE_PRIVATE);
+        String myWordList = sharedPref.getString("WordList", new WordList().toString());
+
+        Gson gson = new Gson();
+        TypeToken<WordList> wordListObject = new TypeToken<WordList>(){};
+        WordList wordList = gson.fromJson(myWordList, wordListObject.getType());
+
+        Word word = new Word(newWord, newDefinition);
+        wordList.addWord(word);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString( "WordList", gson.toJson( wordList ));
+        editor.apply();
+
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("new_word", newWord);
-        intent.putExtra("new_definition", newDefinition);
         startActivity(intent);
     }
+
+
+
+
+
+
 }
+
+
+//        intent.putExtra("new_word", newWord);
+//        intent.putExtra("new_definition", newDefinition);

@@ -1,6 +1,8 @@
 package com.codeclan.wordyapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,12 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
     Button learnButton;
     Button newWordButton;
+    public static final String WORDLIST = "WordList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,32 +28,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        learnButton = (Button)findViewById(R.id.learn_button);
-        newWordButton = (Button)findViewById(R.id.new_word_button);
+        learnButton = (Button) findViewById(R.id.learn_button);
+        newWordButton = (Button) findViewById(R.id.new_word_button);
 
-        WordList wordList = new WordList();
+        // Get any info from sharedpreferences file
 
-        wordList.addWord(new Word("banana", "skin"));
-        wordList.addWord(new Word("cheese", "A yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzzA yellow kind of beefzzzzzzzzzzzzzz"));
-        wordList.addWord(new Word("Godalming", "a place in surrey"));
-        wordList.addWord(new Word("Gland", "something rude"));
-        wordList.addWord(new Word("Sick", "excellent"));
-        wordList.addWord(new Word("Dog", "a dyslexic god"));
-        wordList.addWord(new Word("Dog", "a dyslexic god"));
-        wordList.addWord(new Word("banana", "skin"));
-        wordList.addWord(new Word("banana", "skin"));
-        wordList.addWord(new Word("banana", "skin"));
-        wordList.addWord(new Word("Dog", "a dyslexic god"));
+        SharedPreferences sharedPref = getSharedPreferences(WORDLIST, Context.MODE_PRIVATE);
+        String myWordList = sharedPref.getString( "WordList", new WordList().toString() );
 
-        Intent newWordIntent = getIntent();
-        Bundle extras = newWordIntent.getExtras();
+        Gson gson = new Gson();
+        TypeToken<WordList> newWordList = new TypeToken<WordList>(){};
 
-        Word newWord = new Word(extras.getString("new_word"), extras.getString("new_definition"));
-        if (newWord != null){
-            wordList.addWord(newWord);
-        }
+        WordList wordList = gson.fromJson(myWordList, newWordList.getType());
+
+        // New WordList object - with 1 added word for test
+
+//        Display on this page
 
         ArrayList<Word> mainListWords = wordList.getWords();
+        Collections.reverse(mainListWords);
 
         WordListAdapter wordListAdapter = new WordListAdapter(this, mainListWords);
 
@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClickLearnButton(View button){
+    public void onClickLearnButton(View button) {
         Log.d(getClass().toString(), "Button was clicked");
         Intent intent = new Intent(this, MemoryGameActivity.class);
         startActivity(intent);
     }
 
-    public void onClickNewWordButton(View button){
+    public void onClickNewWordButton(View button) {
 
         Log.d(getClass().toString(), "Button was clicked");
         Intent intent = new Intent(this, NewWordActivity.class);
