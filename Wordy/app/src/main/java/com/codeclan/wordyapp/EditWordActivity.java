@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,9 +62,17 @@ public class EditWordActivity extends AppCompatActivity {
         // I could either edit the wordlist object containing the object, or delete the word and add
         // a new one, so it sits at the top of the list. I'm going to try the latter.
 
-        wordList.deleteWord(bundledWord);
-        Word word = new Word(editedWord, editedDefinition);
-        wordList.addWord(word);
+//        wordList.deleteWord(bundledWord); // this isn't the same object in the array
+
+        for (Word word : wordList.getWords()){
+            if (word.getWord().equals(bundledWord.getWord())){
+                wordList.deleteWord(word);
+                Log.d("delete word log", word.toString());
+            }
+        }
+
+        Word _word = new Word(editedWord, editedDefinition);
+        wordList.addWord(_word);
 
         SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -74,7 +83,6 @@ public class EditWordActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
 
 
 }
