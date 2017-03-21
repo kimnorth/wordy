@@ -23,22 +23,28 @@ public class MemoryGame {
 
         ArrayList<Word> allWords = wordList.getWords();
 
-        System.out.println(wordList.getLength());
-        System.out.println(allWords.size());
+        int counter = 0; // initialize counter
 
-        int counter = 0;
+        int lengthOfArrayList = getLength(); // get length of the arraylist of words
 
-        while (counter < 5) {
+        int max_counter = 0; // intialize maximum counter
+
+        if (lengthOfArrayList > 5){   // if the length of the arraylist is greater than 5
+            max_counter = 5;          // set the maximum at 5
+        }
+
+        else {                                  // else set the maximum to the length of the arraylist
+            max_counter = lengthOfArrayList;    // i.e. 1 - 4.
+        }
+
+        while (counter < max_counter) {
 
                 Random rand = new Random();
                 int index = rand.nextInt(allWords.size()) + 1;
 
                 if (!chosenWords.contains(allWords.get(index - 1))) {
                     chosenWords.add(allWords.get(index - 1));
-//                    System.out.println(allWords.get(index - 1));
                     allWords.remove(index - 1);
-//                    System.out.println(chosenWords.size());
-//                    System.out.println(allWords.size());
                     counter++;
                 }
 

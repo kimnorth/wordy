@@ -101,13 +101,20 @@ public class MainActivity extends AppCompatActivity {
 
         Word w = (Word) imageView.getTag();
 
-        ArrayList<Word> arrayListOfWords = wordList.getWords();
+//        ArrayList<Word> arrayListOfWords = wordList.getWords();
+        ArrayList<Word> remainingWords = new ArrayList<>();
 
-        for (Word word : arrayListOfWords) {
-            if (word.getWord().equals(w.getWord())) {
-                wordList.deleteWord(word);
+        // Need to create a new arraylist of words that excludes any that match the bundled word
+        // Then use my new method to add it to the wordList object
+        // Then put that back up to shared preferences
+
+        for (Word word : wordList.getWords()) {
+            if (!word.getWord().equals(w.getWord())) {
+                remainingWords.add(word);
             }
         }
+
+        wordList.replaceList(remainingWords);
 
         SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -117,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d(getClass().toString(), "Delete was clicked");
         finish();
         startActivity(getIntent());
-
 
 
     }

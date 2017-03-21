@@ -31,4 +31,8 @@ public class WordList {
         return this.words;
     }
 
+    public void replaceList(ArrayList<Word> list){
+        this.words = list;
+    }
+
 }

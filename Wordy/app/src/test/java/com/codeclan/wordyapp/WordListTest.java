@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,10 @@ import java.util.ArrayList;
 public class WordListTest {
 
     WordList wordList;
+    ArrayList<Word> replacedList;
+    ArrayList<Word> expected;
     Word newWord;
+    Word newWord2;
 
     @Before
     public void before(){
@@ -48,6 +52,20 @@ public class WordListTest {
         wordList.addWord(newWord);
         ArrayList<Word> gotWords = wordList.getWords();
         assertEquals(1, gotWords.size());
+    }
+
+    @Test
+    public void canReplaceArrayList(){
+        wordList = new WordList();
+        newWord = new Word("Banana", "smiley face");
+        newWord2 = new Word("Success", "you have replaced the ArrayList");
+        replacedList = new ArrayList<Word>();
+        replacedList.add(newWord2);
+        wordList.replaceList(replacedList);
+        expected = new ArrayList<Word>();
+        expected.add(newWord2);
+        assertEquals(expected, wordList.getWords());
+
     }
 
 }

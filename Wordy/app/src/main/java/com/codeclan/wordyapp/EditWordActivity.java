@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
+
 public class EditWordActivity extends AppCompatActivity {
 
     public static final String WORDLIST = "WordList";
@@ -60,21 +62,27 @@ public class EditWordActivity extends AppCompatActivity {
         TypeToken<WordList> wordListObject = new TypeToken<WordList>(){};
         WordList wordList = gson.fromJson(myWordList, wordListObject.getType());
 
-        // I could either edit the wordlist object containing the object, or delete the word and add
-        // a new one, so it sits at the top of the list. I'm going to try the latter.
 
 //        wordList.deleteWord(bundledWord); // this isn't the same object in the array
 
-        for (Word word : wordList.getWords()){
-            if (word.getWord().equals(bundledWord.getWord())){
-                Log.d("Word object is", word.toString());
-                wordList.deleteWord(word);
+//        ArrayList<Word> arrayListOfWords = wordList.getWords();
 
+        ArrayList<Word> remainingWords = new ArrayList<>();
+
+        for (Word word : wordList.getWords()){
+
+            if (!word.getWord().equals( bundledWord.getWord() )){
+                remainingWords.add(word);
             }
         }
 
-        Word _word = new Word(editedWord, editedDefinition);
-        wordList.addWord(_word);
+        wordList.replaceList(remainingWords);
+
+        // The word being deleted isn't the same as the word object in the wordlist (even if they
+        // have the same value)
+
+        Word tempWord = new Word(editedWord, editedDefinition);
+        wordList.addWord(tempWord);
 
         SharedPreferences.Editor editor = sharedPref.edit();
 
