@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -85,6 +86,38 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EditWordActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
+
+    }
+
+    public void onDeleteButtonPressed(View imageView){
+
+        SharedPreferences sharedPref = getSharedPreferences(WORDLIST, Context.MODE_PRIVATE);
+        String myWordList = sharedPref.getString( "WordList", "This should not be seen" );
+
+        Gson gson = new Gson();
+        TypeToken<WordList> newWordList = new TypeToken<WordList>(){};
+
+        WordList wordList = gson.fromJson(myWordList, newWordList.getType());
+
+        Word w = (Word) imageView.getTag();
+
+        ArrayList<Word> arrayListOfWords = wordList.getWords();
+
+        for (Word word : arrayListOfWords) {
+            if (word.getWord().equals(w.getWord())) {
+                wordList.deleteWord(word);
+            }
+        }
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString( "WordList", gson.toJson( wordList ));
+        editor.apply();
+
+        Log.d(getClass().toString(), "Delete was clicked");
+        finish();
+        startActivity(getIntent());
+
 
 
     }

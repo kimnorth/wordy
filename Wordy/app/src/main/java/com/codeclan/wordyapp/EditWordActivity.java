@@ -24,6 +24,7 @@ public class EditWordActivity extends AppCompatActivity {
     private EditText wordToEdit;
     private EditText definitionToEdit;
     private Button editWordButton;
+    private Integer indexPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,9 @@ public class EditWordActivity extends AppCompatActivity {
 
         for (Word word : wordList.getWords()){
             if (word.getWord().equals(bundledWord.getWord())){
+                Log.d("Word object is", word.toString());
                 wordList.deleteWord(word);
-                Log.d("delete word log", word.toString());
+
             }
         }
 
