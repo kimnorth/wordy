@@ -19,15 +19,17 @@ public class MemoryGame {
         return this.chosenWords.size();
     }
 
+    public ArrayList<Word> getChosenWords() { return this.chosenWords; }
+
     public void pickWords(WordList wordList){
 
         ArrayList<Word> allWords = wordList.getWords();
 
         int counter = 0; // initialize counter
 
-        int lengthOfArrayList = getLength(); // get length of the arraylist of words
+        int lengthOfArrayList = allWords.size(); // get length of the arraylist of words
 
-        int max_counter = 0; // intialize maximum counter
+        int max_counter = 0; // initialize maximum counter
 
         if (lengthOfArrayList > 5){   // if the length of the arraylist is greater than 5
             max_counter = 5;          // set the maximum at 5

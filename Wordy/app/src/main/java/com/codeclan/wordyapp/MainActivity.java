@@ -42,9 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
         Gson gson = new Gson();
         TypeToken<WordList> newWordList = new TypeToken<WordList>(){};
+
         if (myWordList.equals("This is a string")){
             myWordList = gson.toJson( new WordList() );
         }
+
         WordList wordList = gson.fromJson(myWordList, newWordList.getType());
 
 //      Display on this page
