@@ -3,14 +3,20 @@ package com.codeclan.wordyapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.internal.BottomNavigationMenu;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +29,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
 
     Button learnButton;
-    Button newWordButton;
+
     public static final String WORDLIST = "WordList";
 
     @Override
@@ -33,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         learnButton = (Button) findViewById(R.id.learn_button);
-        newWordButton = (Button) findViewById(R.id.new_word_button);
 
         // Get any info from sharedpreferences file
 
@@ -64,13 +69,6 @@ public class MainActivity extends AppCompatActivity {
     public void onClickLearnButton(View button) {
         Log.d(getClass().toString(), "Button was clicked");
         Intent intent = new Intent(this, MemoryGameActivity.class);
-        startActivity(intent);
-    }
-
-    public void onClickNewWordButton(View button) {
-
-        Log.d(getClass().toString(), "Button was clicked");
-        Intent intent = new Intent(this, NewWordActivity.class);
         startActivity(intent);
     }
 
@@ -127,7 +125,30 @@ public class MainActivity extends AppCompatActivity {
         finish();
         startActivity(getIntent());
 
+        Toast.makeText(MainActivity.this, "Word Deleted", Toast.LENGTH_LONG).show();
 
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.add_word, menu); //
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.add_word) {
+
+                Intent intent = new Intent(this, NewWordActivity.class);
+                startActivity(intent);
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

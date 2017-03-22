@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -91,6 +92,8 @@ public class EditWordActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+        Toast.makeText(EditWordActivity.this, "Word Edited", Toast.LENGTH_LONG).show();
 
     }
 

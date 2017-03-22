@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -64,6 +65,8 @@ public class NewWordActivity extends AppCompatActivity {
 
         editor.putString( "WordList", gson.toJson( wordList ));
         editor.apply();
+
+        Toast.makeText(NewWordActivity.this, "Word Added", Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

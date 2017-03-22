@@ -21,6 +21,8 @@ public class MemoryGame {
 
     public ArrayList<Word> getChosenWords() { return this.chosenWords; }
 
+    public Word getChosenWord(int index) { return this.chosenWords.get(index); }
+
     public void pickWords(WordList wordList){
 
         ArrayList<Word> allWords = wordList.getWords();
