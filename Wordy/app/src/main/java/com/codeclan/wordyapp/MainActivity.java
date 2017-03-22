@@ -28,8 +28,6 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button learnButton;
-
     public static final String WORDLIST = "WordList";
 
     @Override
@@ -37,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        learnButton = (Button) findViewById(R.id.learn_button);
 
         // Get any info from sharedpreferences file
 
@@ -64,12 +60,6 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.main_list);
         listView.setAdapter(wordListAdapter);
 
-    }
-
-    public void onClickLearnButton(View button) {
-        Log.d(getClass().toString(), "Button was clicked");
-        Intent intent = new Intent(this, MemoryGameActivity.class);
-        startActivity(intent);
     }
 
     public void onWordClicked(View textView) {
@@ -141,13 +131,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.add_word) {
+        if (item.getItemId() == R.id.add_word_now) {
 
-                Intent intent = new Intent(this, NewWordActivity.class);
-                startActivity(intent);
-                return true;
+            Intent intent = new Intent(this, NewWordActivity.class);
+            startActivity(intent);
+            return true;
 
         }
+
+        else if (item.getItemId() == R.id.learn) {
+            Intent intent = new Intent(this, MemoryGameActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
