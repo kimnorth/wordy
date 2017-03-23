@@ -9,19 +9,44 @@
 
     <EditText
         android:id="@+id/word_to_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:gravity="top|left"
+        android:maxLines="10"
+        android:background="@drawable/text_border"
+        android:padding="10dp"/>
 
     <EditText
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
         android:id="@+id/definition_to_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:background="@drawable/text_border"
+        android:layout_gravity="center"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="6"
+        android:gravity="top|left"
+        android:maxLines="10"
+        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:scrollbars="vertical"
+        android:padding="10dp"
+        />
 
     <Button
+        android:layout_marginTop="10dp"
         android:id="@+id/edit_word_button"
+        android:textSize="17dp"
+        android:textStyle="bold"
         android:hint="Update"
-        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:onClick="onClickUpdateButton"/>
+        android:onClick="onClickUpdateButton"
+        android:background="@color/colorPrimary"/>
 
 </LinearLayout>

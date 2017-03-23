@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(getClass().toString(), "Delete was clicked");
         finish();
         startActivity(getIntent());
+        this.overridePendingTransition(0, 0);
 
         Toast.makeText(MainActivity.this, "Word Deleted", Toast.LENGTH_LONG).show();
 

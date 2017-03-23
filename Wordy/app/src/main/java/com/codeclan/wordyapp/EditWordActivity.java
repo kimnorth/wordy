@@ -64,10 +64,6 @@ public class EditWordActivity extends AppCompatActivity {
         WordList wordList = gson.fromJson(myWordList, wordListObject.getType());
 
 
-//        wordList.deleteWord(bundledWord); // this isn't the same object in the array
-
-//        ArrayList<Word> arrayListOfWords = wordList.getWords();
-
         ArrayList<Word> remainingWords = new ArrayList<>();
 
         for (Word word : wordList.getWords()){

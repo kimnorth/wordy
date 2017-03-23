@@ -14,9 +14,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class NewWordActivity extends AppCompatActivity {
 

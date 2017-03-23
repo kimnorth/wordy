@@ -8,18 +8,26 @@
     tools:context="com.codeclan.wordyapp.NewWordActivity">
 
     <TextView
+        android:layout_marginTop="20dp"
         android:id="@+id/enter_new_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Enter a new word: "/>
+        android:text="New word: "
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="10dp"/>
 
     <EditText
         android:id="@+id/new_word_name"
         android:hint="Enter a new word: "
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:inputType="textMultiLine"
+        android:background="@drawable/text_border"
+
         />
 
     <TextView
@@ -27,23 +35,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Enter a new word: "/>
+        android:text="Definition: "
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="10dp"/>
 
     <EditText
         android:layout_gravity="center"
         android:hint="Enter a new definition"
         android:id="@+id/new_word_definition"
-        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:lines="8"
+        android:minLines="6"
+        android:gravity="top|left"
+        android:maxLines="10"
         android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:scrollbars="vertical"
+        android:background="@drawable/text_border"
         />
 
     <Button
+        android:layout_marginTop="20dp"
         android:id="@+id/add_word_button"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:onClick="onClickAddWordButton"
         android:layout_gravity="center"
         android:hint="Add"
+        android:textSize="17dp"
+        android:padding="10dp"
+        android:background="@color/colorPrimary"
         />
 
 </LinearLayout>
